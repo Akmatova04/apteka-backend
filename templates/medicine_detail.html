@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ medicine.name }} - Менин Аптекам{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        {% if medicine.image %}
+            <img src="{{ medicine.image.url }}" class="img-fluid rounded" alt="{{ medicine.name }}">
+        {% else %}
+            <img src="{% static 'images/placeholder.png' %}" class="img-fluid rounded" alt="Сүрөт жок">
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h1>{{ medicine.name }}</h1>
+        <hr>
+        <p><strong>Сүрөттөмөсү:</strong> {{ medicine.description|linebreaksbr }}</p>
+        <p><strong>Баасы:</strong> <span class="h4 text-success">{{ medicine.price }} сом</span></p>
+        <p><strong>Калдыгы:</strong> {{ medicine.quantity }}</p>
+
+        {% if medicine.quantity > 0 %}
+            <!-- Буйрутма берүү формасы (жөнөкөй вариант) -->
+            <form method="POST" action="{% url 'create-order-page' %}"> {# Бул URL'ди түзүшүңүз керек #}
+                {% csrf_token %}
+                <input type="hidden" name="medicine_id" value="{{ medicine.id }}">
+                <div class="form-group">
+                    <label for="quantity">Саны:</label>
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" max="{{ medicine.quantity }}" class="form-control" style="width: 100px;">
+                </div>
+                <!-- Азырынча бул жерге кардардын маалыматын киргизүүнү кошпой туралы,
+                     аны өзүнчө "Буйрутма берүү" барагында жасайбыз.
+                     Бул жерден "Себетке кошуу" логикасын жасасак болот, бирок ал татаалыраак.
+                     Эң жөнөкөйү - бул жерден буйрутма формасына өткөрүү.
+                     Же бир дарыны дароо буйрутма кылуу үчүн: -->
+                <h4>Буйрутма берүү:</h4>
+                <div class="form-group">
+                    <label for="customer_name">Аты-жөнүңүз:</label>
+                    <input type="text" name="customer_name" id="customer_name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer_phone">Телефон номериңиз:</label>
+                    <input type="text" name="customer_phone" id="customer_phone" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success btn-lg">Азыр буйрутма берүү</button>
+            </form>
+        {% else %}
+            <p class="text-danger"><strong>Бул дары азыр кампада жок.</strong></p>
+        {% endif %}
+        <a href="{% url 'medicine-list-page' %}" class="btn btn-secondary mt-3">Дарылардын тизмесине кайтуу</a>
+    </div>
+</div>
+{% endblock %}

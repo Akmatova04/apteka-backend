@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}{{ page_title|default:"Байланыш" }} - Аптека KG{% endblock %}
+
+{% block extra_head %}
+<style>
+    .contact-header {
+        background: linear-gradient(rgba(40, 167, 69, 0.7), rgba(40, 167, 69, 0.85)), url("{% static 'images/contact_background.jpg' %}"); /* Фон сүрөтүн кошуңуз */
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 4rem 1.5rem;
+        margin-bottom: 3rem;
+        border-radius: .3rem;
+        text-align: center;
+    }
+    .contact-header h1 {
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+    .contact-card {
+        background-color: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: .5rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        height: 100%; /* Бирдей бийиктик үчүн */
+    }
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.12);
+    }
+    .contact-card .icon-circle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 70px;
+        height: 70px;
+        background-color: #28a745; /* Жашыл */
+        color: white;
+        border-radius: 50%;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    .contact-card h4 {
+        color: #343a40;
+        margin-bottom: 1rem;
+    }
+    .contact-card p, .contact-card a {
+        color: #495057;
+        font-size: 0.95rem;
+    }
+    .contact-card a:hover {
+        color: #28a745; /* Жашыл */
+    }
+    .social-icons a {
+        font-size: 1.8rem; /* Иконкалардын өлчөмү */
+        margin: 0 10px;
+        transition: transform 0.2s ease;
+    }
+    .social-icons a:hover {
+        transform: scale(1.2);
+    }
+    /* Байланыш формасы үчүн (эгер кошулса) */
+    .contact-form-section {
+        background-color: #f8f9fa;
+        padding: 2rem;
+        border-radius: .5rem;
+        margin-top: 2rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="contact-header">
+    <h1 class="display-4 font-weight-bold">Биз менен байланышыңыз</h1>
+    <p class="lead">Сиздин суроолоруңузга жооп берүүгө ар дайым даярбыз!</p>
+</div>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="contact-card">
+                <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+                <h4>Дарек</h4>
+                <p>Баткен ш., Досбол пр., 21</p>
+                <small class="text-muted">Дш-Жм: 9:00-20:00</small>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="contact-card">
+                <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
+                <h4>Телефон</h4>
+                <p><a href="tel:+996555123456">+996 (990) 686-854</a></p>
+                <p><a href="tel:+996777987654">+996 (990) 686-854</a></p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="contact-card">
+                <div class="icon-circle"><i class="fas fa-envelope"></i></div>
+                <h4>Email</h4>
+                
+                <p><a href="mailto:support@apteka.kg">support@akmatova1804</a></p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="contact-card">
+                <div class="icon-circle"><i class="fas fa-users"></i></div>
+                <h4>Социалдык тармактар</h4>
+                <div class="social-icons mt-2">
+                    <a href="https://instagram.com/akmatova1804" target="_blank" title="Instagram" style="color: #E1306C;"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/фльфещмф " target="_blank" title="Facebook" style="color: #1877F2;"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://t.me/Назира Акматова" target="_blank" title="Telegram" style="color: #0088cc;"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://wa.me/996990686854?text=Саламатсызбы!" target="_blank" title="WhatsApp" style="color: #25D366;"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+{% endblock %}

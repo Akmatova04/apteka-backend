@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}{{ page_title|default:"Катталуу" }} - Аптека KG{% endblock %}
+
+{% block extra_head %}
+<style>
+    .signup-container { /* login-container'ге окшош */
+        max-width: 500px;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+    .signup-card { /* login-card'га окшош */
+        border: none;
+        box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1) !important;
+    }
+    .signup-card .card-header {
+        background-color: #28a745; /* Жашыл */
+        color: white;
+        border-bottom: none;
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+    }
+    .signup-card .card-body {
+        padding: 2rem;
+    }
+    .signup-card .form-control {
+        border-radius: .5rem;
+        padding: 1.5rem .75rem;
+    }
+    .signup-card .btn-success {
+        background-color: #218838;
+        border-color: #1e7e34;
+        border-radius: .5rem;
+        padding: .75rem;
+        font-size: 1.1rem;
+    }
+    .signup-card .btn-success:hover {
+        background-color: #1c7430;
+        border-color: #1a5a27;
+    }
+    .form-text a {
+        color: #007bff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container signup-container">
+    <div class="card signup-card">
+        <div class="card-header text-center">
+            <h2 class="mb-0"><i class="fas fa-user-plus mr-2"></i>Жаңы Аккаунт Түзүү</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                            <p class="mb-0">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}" class="font-weight-bold">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text|safe }}</small>
+                        {% endif %}
+                        {% if field.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in field.errors %}
+                                    <p class="mb-0">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-success btn-block mt-4">Катталуу</button>
+            </form>
+            <hr class="my-4">
+            <p class="text-center">
+                Аккаунтуңуз барбы? <a href="{% url 'login' %}">Анда кириңиз!</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

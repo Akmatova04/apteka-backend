@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}{{ page_title|default:"Биз жөнүндө" }} - Аптека KG{% endblock %}
+
+{% block extra_head %}
+<style>
+    .about-header {
+        background-color: #e9ecef; /* Жеңил фон */
+        padding: 3rem 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: .3rem;
+    }
+    .about-header h1 {
+        color: #28a745; /* Жашыл түс */
+    }
+    .section-icon {
+        font-size: 2rem;
+        color: #28a745;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+    .value-card {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: .5rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    }
+    .value-card h4 {
+        color: #007bff; /* Көк түс (мисал үчүн) */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="about-header text-center">
+        <h1 class="display-4 font-weight-bold">"Аптека KG"</h1>
+        <p class="lead">Сиздин ишенимдүү онлайн дарыканаңыз</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <p class="text-center mb-5" style="font-size: 1.2rem;">
+                Биздин платформа Кыргызстандагы ар бир үй-бүлөгө сапаттуу жана жеткиликтүү медициналык жардам көрсөтүү максатында түзүлгөн. Биз сиздин ден соолугуңузга олуттуу мамиле жасап, эң мыкты өнүмдөрдү жана кызматтарды сунуштоого умтулабыз.
+            </p>
+
+            <hr class="my-5">
+
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="value-card h-100">
+                        <i class="fas fa-bullseye section-icon mb-2"></i>
+                        <h4>Биздин Миссиябыз</h4>
+                        <p class="text-muted">Калктын ден соолугун чыңдоо, жашоо сапатын жогорулатуу жана медициналык маалыматка жеткиликтүүлүктү камсыздоо.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card h-100">
+                        <i class="fas fa-eye section-icon mb-2"></i>
+                        <h4>Биздин Көз Карашыбыз</h4>
+                        <p class="text-muted">Инновациялык технологияларды колдонуу менен Кыргызстандагы алдыңкы санариптик саламаттыкты сактоо платформасы болуу.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card h-100">
+                        <i class="fas fa-handshake section-icon mb-2"></i>
+                        <h4>Биздин Баалуулуктар</h4>
+                        <p class="text-muted">Ишеним, сапат, кесипкөйлүк, кардарларга кам көрүү жана жеткиликтүүлүк.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-5">
+
+            <h3 class="text-center mb-4 text-success font-weight-bold">Эмне үчүн бизди тандашат?</h3>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-check-circle text-success fa-lg mr-3 mt-1"></i>
+                        <div>
+                            <h5 class="mb-1">Кеңири ассортимент</h5>
+                            <p class="text-muted small">Миңдеген аталыштагы дарылар, витаминдер, БАДдар жана медициналык буюмдар.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-shield-alt text-success fa-lg mr-3 mt-1"></i>
+                        <div>
+                            <h5 class="mb-1">Сапат кепилдиги</h5>
+                            <p class="text-muted small">Бардык товарлар сертификацияланган жана сактоо эрежелери так сакталат.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                     <div class="d-flex align-items-start">
+                        <i class="fas fa-tags text-success fa-lg mr-3 mt-1"></i>
+                        <div>
+                            <h5 class="mb-1">Ыңгайлуу баалар</h5>
+                            <p class="text-muted small">Кардарларыбызга эң жакшы бааларды жана арзандатууларды сунуштайбыз.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-user-md text-success fa-lg mr-3 mt-1"></i>
+                        <div>
+                            <h5 class="mb-1">Кесипкөй кеңеш</h5>
+                            <p class="text-muted small">Тажрыйбалуу фармацевттерден онлайн же телефон аркылуу акысыз кеңеш алыңыз.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-6 mb-3">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-shipping-fast text-success fa-lg mr-3 mt-1"></i>
+                        <div>
+                            <h5 class="mb-1">Тез жеткирүү</h5>
+                            <p class="text-muted small">Буйрутмаңызды Бишкек жана башка аймактарга кыска мөөнөттө жеткиребиз.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-6 mb-3">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-lock text-success fa-lg mr-3 mt-1"></i>
+                        <div>
+                            <h5 class="mb-1">Коопсуз төлөм</h5>
+                            <p class="text-muted small">Сиз үчүн ыңгайлуу жана далилденген төлөм ыкмалары.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="{% url 'contact-us-page' %}" class="btn btn-primary btn-lg mr-2"><i class="fas fa-envelope"></i> Биз менен байланышуу</a>
+                <a href="{% url 'home' %}" class="btn btn-outline-success btn-lg"><i class="fas fa-pills"></i> Дарыларды көрүү</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,33 +1,36 @@
-"""
-URL configuration for apteka_project project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
 # apteka_project/urls.py
+
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings # Импорттоо
-from django.conf.urls.static import static # Импорттоо
-# from api.views import home_page_view (эгер бар болсо)
+from django.conf import settings
+from django.conf.urls.static import static
+from api.views import (
+    medicine_list_view, medicine_detail_view,
+    create_order_view, order_success_view,
+    signup_view, about_us_view, contact_us_view # Жаңы view'ларды импорттоо
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    # path('', home_page_view, name='home'), (эгер бар болсо)
+
+    # Сайттын баракчалары
+    path('', medicine_list_view, name='home'),
+    path('medicines/', medicine_list_view, name='medicine-list-page'),
+    path('medicines/<int:pk>/', medicine_detail_view, name='medicine-detail-page'),
+
+    # Буйрутма процесси
+    path('create-order/', create_order_view, name='create-order-page'),
+    path('order-success/<int:order_id>/', order_success_view, name='order-success-page'),
+
+    # "Биз жөнүндө" жана "Байланыш" баракчалары
+    path('about-us/', about_us_view, name='about-us-page'),
+    path('contact-us/', contact_us_view, name='contact-us-page'),
+
+    # Аутентификация
+    path('accounts/signup/', signup_view, name='signup'),
+    path('accounts/', include('django.contrib.auth.urls')), # login, logout, password_reset ж.б.
 ]
 
-# Иштеп чыгуу учурунда медиа файлдарды тейлөө үчүн
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

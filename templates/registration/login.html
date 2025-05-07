@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Сайтка Кирүү - Аптека KG{% endblock %}
+
+{% block extra_head %}
+<style>
+    .login-container {
+        max-width: 450px; /* Форманын максималдуу туурасы */
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+    .login-card {
+        border: none; /* Чектерин алып салуу */
+        box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1) !important; /* Көлөкө */
+    }
+    .login-card .card-header {
+        background-color: #28a745; /* Жашыл */
+        color: white;
+        border-bottom: none;
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+    }
+    .login-card .card-body {
+        padding: 2rem;
+    }
+    .login-card .form-control {
+        border-radius: .5rem; /* Талаалардын бурчтарын тегеректөө */
+        padding: 1.5rem .75rem; /* Ички боштуктарды чоңойтуу */
+    }
+    .login-card .btn-primary {
+        background-color: #0069d9;
+        border-color: #0062cc;
+        border-radius: .5rem;
+        padding: .75rem;
+        font-size: 1.1rem;
+    }
+    .login-card .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004a99;
+    }
+    .form-text a {
+        color: #007bff;
+    }
+    .form-text a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container login-container">
+    <div class="card login-card">
+        <div class="card-header text-center">
+            <h2 class="mb-0"><i class="fas fa-sign-in-alt mr-2"></i>Сайтка Кирүү</h2>
+        </div>
+        <div class="card-body">
+            {% if form.errors and not form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    Сураныч, төмөндөгү каталарды оңдоңуз.
+                </div>
+            {% endif %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for error in form.non_field_errors %}
+                        <p class="mb-0">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if next and not user.is_authenticated %}
+                <div class="alert alert-info">
+                    Сураныч, бул баракты көрүү үчүн кириңиз.
+                </div>
+            {% endif %}
+
+            <form method="post" action="{% url 'login' %}" novalidate>
+                {% csrf_token %}
+                
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}" class="font-weight-bold">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text|safe }}</small>
+                        {% endif %}
+                        {% if field.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in field.errors %}
+                                    <p class="mb-0">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                
+                <button type="submit" class="btn btn-primary btn-block mt-4">Кирүү</button>
+                <input type="hidden" name="next" value="{{ next|default:'/' }}">
+            </form>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-2"><a href="{% url 'password_reset' %}">Сыр сөзүңүздү унуттуңузбу?</a></p>
+                <p class="mb-0">Аккаунтуңуз жокпу? <a href="{% url 'signup' %}">Анда катталыңыз!</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Буйрутма Ийгиликтүү{% endblock %}
+{% block content %}
+<div class="alert alert-success">
+    <h1>Буйрутмаңыз №{{ order.id }} ийгиликтүү түзүлдү!</h1>
+    <p>Кардар: {{ order.customer_name }}</p>
+    <p>Телефон: {{ order.customer_phone }}</p>
+    <p>Жалпы сумма: {{ order.total_price }} сом</p>
+    <h4>Буйрутмадагы дарылар:</h4>
+    <ul>
+        {% for item in order.items.all %}
+            <li>{{ item.medicine.name }} - {{ item.quantity }} даана x {{ item.price_at_order }} сом</li>
+        {% endfor %}
+    </ul>
+    <p>Жакында биздин кызматкер сиз менен байланышат.</p>
+</div>
+<a href="{% url 'home' %}" class="btn btn-primary">Башкы бетке кайтуу</a>
+{% endblock %}
